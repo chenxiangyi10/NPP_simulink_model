@@ -1,0 +1,46 @@
+% 
+
+%{ 
+external reference (steam its generation and use)
+Plant information
+    Power level, MWt 2568
+    Power level, MWe 846
+    Num of steam generators, 2
+Steam generator design conditions
+    Primay T(hot), 317.7 C
+    Primary T(cold), 290.0 C
+    Primary flow, 8273.16 kg/s
+    Primary opearting pressure, 15.17 MPa
+    Secondary steam temperature, 312.8 C
+    Secondary feedwater temperature, 237.8 C
+    Steam flow, 680.4 kg/s
+    Secondary operating pressure, 6.38 MPa
+Steam generator design data
+    Num of tubes per generator, 15531
+    Tube OD, 15.875 mm
+    Tube minimum wall thickness, 0.864 mm
+    Tube material, Inconel 600
+    Surface Area 12356 m^2
+    Tube pitch 22.225 mm
+    Num of support plates 15
+    Support plate type Broached
+    Support plate material Carbon Steel
+    Integral economizer No
+%}
+
+% validation
+W_val = 680.4 % [kg/s] steam mass flow rate
+T_sg_out_val = 312.8 + 273.15 % [K] steam temperature
+h_sg_out_val = XSteam('hV_p', Tin_val) % steam specific enthalpy
+
+
+
+% these parameters cannot be changes
+P_sg0 = 7.6 % [MPa] steam generator pressure
+eta = 0.85; % the turbine efficiency
+Pc = 0.008; % [MPa] the condenser pressure
+Pt0 = 819; % [MW] the turbine initial power
+
+
+% these parameters are derived
+hsg = XSteam('hV_p', P_sg0 * 10); % [kJ/kg] steam generator vapor specific enthalpy
